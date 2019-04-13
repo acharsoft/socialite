@@ -14,6 +14,7 @@ use Laravel\Socialite\Two\FacebookProvider;
 use Laravel\Socialite\Two\LinkedInProvider;
 use Laravel\Socialite\Two\BitbucketProvider;
 use League\OAuth1\Client\Server\Twitter as TwitterServer;
+use SocialiteProviders\Zarinpal\Provider;
 
 class SocialiteManager extends Manager implements Contracts\Factory
 {
@@ -39,6 +40,15 @@ class SocialiteManager extends Manager implements Contracts\Factory
 
         return $this->buildProvider(
             GithubProvider::class, $config
+        );
+    }
+
+    protected function createZarinpalDriver()
+    {
+        $config = $this->app['config']['services.zarinpal'];
+
+        return $this->buildProvider(
+            Provider::class, $config
         );
     }
 
